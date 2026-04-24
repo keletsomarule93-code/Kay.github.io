@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Corner Lifestyle Café – Mahikeng</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0A0A0A;
+    --charcoal: #1A1A1A;
+    --dark-brown: #2D1810;
+    --coffee: #4A2C1A;
+    --brown: #6B3F1F;
+    --tan: #A67C52;
+    --caramel: #C8A882;
+    --cream: #E8D5C4;
+    --off-white: #F5F5F5;
+    --border: rgba(200,168,130,0.15);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--black);
+    color: var(--off-white);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 4rem;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .nav-logo img {
+    height: 48px; width: auto;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--caramel);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--cream); }
+  .nav-cta {
+    background: var(--tan);
+    color: var(--black) !important;
+    padding: 0.55rem 1.4rem;
+    border-radius: 2px;
+  }
+  .nav-cta:hover { background: var(--caramel); color: var(--black) !important; }
+
+  /* HERO WITH POSTER */
+  .hero-poster {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 2rem 2rem;
+    background: var(--black);
+  }
+  .poster-container {
+    max-width: 1200px;
+    width: 100%;
+  }
+  .poster-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+  }
+
+  /* SECTION SHARED */
+  section { padding: 6rem 4rem; }
+  .section-header { margin-bottom: 3.5rem; text-align: center; }
+  .section-eyebrow {
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--brown); margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    color: var(--cream); line-height: 1.2;
+  }
+  .section-title em { font-style: italic; color: var(--tan); }
+
+  /* ABOUT */
+  .about { background: var(--dark-brown); }
+  .about-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .about-content p {
+    font-size: 1.1rem; line-height: 1.85; color: var(--caramel);
+    margin-bottom: 1.5rem; font-weight: 300;
+  }
+  .about-content p strong { color: var(--cream); font-weight: 500; }
+
+  .about-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 4rem;
+  }
+  .feature-item {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 2rem; background: var(--coffee);
+    border-radius: 4px;
+    text-align: center;
+  }
+  .feature-icon {
+    width: 60px; height: 60px; border-radius: 50%;
+    background: var(--black); display: flex; align-items: center;
+    justify-content: center; margin-bottom: 1.5rem;
+  }
+  .feature-icon svg { width: 28px; height: 28px; fill: var(--tan); }
+  .feature-text h4 { font-size: 1rem; font-weight: 500; margin-bottom: 0.5rem; color: var(--cream); }
+  .feature-text p { font-size: 0.9rem; color: var(--caramel); line-height: 1.6; }
+
+  /* MENU */
+  .menu { background: var(--black); }
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .menu-category {
+    background: var(--dark-brown); padding: 2.5rem;
+    transition: background 0.2s;
+  }
+  .menu-category:hover { background: var(--coffee); }
+  .cat-icon {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--black); display: flex; align-items: center;
+    justify-content: center; margin-bottom: 1.5rem;
+  }
+  .cat-icon svg { width: 22px; height: 22px; fill: var(--tan); }
+  .cat-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; color: var(--cream);
+    margin-bottom: 1.25rem;
+  }
+  .menu-items { display: flex; flex-direction: column; gap: 0.9rem; }
+  .item-name { font-size: 0.9rem; font-weight: 500; color: var(--cream); }
+  .item-desc { font-size: 0.8rem; color: var(--caramel); margin-top: 0.15rem; }
+
+  /* HOURS & INFO */
+  .info { background: var(--dark-brown); }
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .info-block h3 {
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--brown); margin-bottom: 1.5rem;
+  }
+  .hours-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(200,168,130,0.1);
+  }
+  .hours-row:last-child { border-bottom: none; }
+  .day { font-size: 0.9rem; color: var(--caramel); }
+  .time { font-size: 0.9rem; color: var(--cream); font-weight: 500; }
+  .time.closed { color: var(--brown); font-style: italic; }
+  .contact-item {
+    display: flex; flex-direction: column;
+    margin-bottom: 1.5rem;
+  }
+  .contact-label { font-size: 0.75rem; color: var(--brown); margin-bottom: 0.3rem; }
+  .contact-value { font-size: 0.95rem; color: var(--cream); }
+  .amenity-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+  .amenity-list li {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-size: 0.9rem; color: var(--caramel);
+  }
+  .amenity-list li::before {
+    content: '';
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--tan); flex-shrink: 0;
+  }
+
+  /* EVENTS */
+  .events { background: var(--black); }
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .event-card {
+    background: var(--dark-brown); padding: 2.5rem;
+    border-bottom: 3px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .event-card:hover { border-color: var(--tan); }
+  .event-tag {
+    display: inline-block; font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--black); background: var(--tan);
+    padding: 0.3rem 0.75rem; border-radius: 1px; margin-bottom: 1rem;
+  }
+  .event-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; color: var(--cream); margin-bottom: 0.75rem;
+  }
+  .event-desc { font-size: 0.9rem; color: var(--caramel); line-height: 1.7; }
+
+  /* CTA */
+  .cta {
+    background: var(--dark-brown);
+    padding: 8rem 4rem;
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center;
+  }
+  .cta h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: var(--cream); margin-bottom: 1.5rem; max-width: 18ch;
+  }
+  .cta h2 em { color: var(--tan); }
+  .cta p { color: var(--caramel); margin-bottom: 3rem; font-size: 1.05rem; }
+  .cta-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+  .btn-brown {
+    background: var(--tan); color: var(--black);
+    padding: 1rem 2.5rem; border: none; border-radius: 2px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.875rem;
+    font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+    cursor: pointer; text-decoration: none; transition: opacity 0.2s;
+  }
+  .btn-brown:hover { opacity: 0.85; }
+  .btn-outline {
+    background: transparent; color: var(--cream);
+    padding: 1rem 2.5rem; border: 1.5px solid var(--tan);
+    border-radius: 2px; font-family: 'DM Sans', sans-serif; font-size: 0.875rem;
+    font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+    cursor: pointer; text-decoration: none; transition: all 0.2s;
+  }
+  .btn-outline:hover { background: var(--tan); color: var(--black); }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    padding: 3rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--border);
+  }
+  footer .footer-logo {
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  footer .footer-logo img { height: 40px; width: auto; }
+  footer p { font-size: 0.8rem; color: var(--brown); }
+  .footer-socials { display: flex; gap: 1rem; }
+  .social-link {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; color: var(--caramel);
+    font-size: 0.7rem; font-weight: 500;
+    transition: all 0.2s;
+  }
+  .social-link:hover { border-color: var(--tan); color: var(--tan); }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero-poster { padding: 100px 1rem 1rem; }
+    section { padding: 4rem 1.5rem; }
+    .about-features,
+    .info-grid,
+    .events-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .cta { padding: 5rem 1.5rem; }
+    .cta-btns { flex-direction: column; width: 100%; }
+    .cta-btns a { width: 100%; text-align: center; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img src="corner-logo.png" alt="The Corner Lifestyle Café">
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#info">Visit</a></li>
+    <li><a href="tel:+27183810004" class="nav-cta">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO POSTER -->
+<section class="hero-poster">
+  <div class="poster-container">
+    <img src="cafe-poster.png" alt="The Corner Lifestyle Café - The home of great taste">
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-header">
+    <p class="section-eyebrow">Our Story</p>
+    <h2 class="section-title">More Than a Café. <em>A Lifestyle.</em></h2>
+  </div>
+  <div class="about-content">
+    <p>Nestled on First Avenue in Mahikeng, The Corner Lifestyle Café is <strong>North West's most beloved gathering spot</strong>. From early morning breakfasts to relaxed evening meals, we've built a space where the city comes together.</p>
+    <p>Whether you're catching up with friends, celebrating a milestone, or simply needing a quiet corner to breathe — our team is here to make it memorable. <strong>Good food is our love language,</strong> and we speak it fluently.</p>
+    <p>Rated #2 out of 142 restaurants in Mahikeng, we're proud to have earned the trust of our community through consistently great service, delicious meals, and genuine warmth.</p>
+    
+    <div class="about-features">
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        </div>
+        <div class="feature-text">
+          <h4>Central Location</h4>
+          <p>15 First Ave, Mahikeng — easy to find, impossible to forget</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+        </div>
+        <div class="feature-text">
+          <h4>Community First</h4>
+          <p>Hosting live music, R&B nights, radio broadcasts & soup drives</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg>
+        </div>
+        <div class="feature-text">
+          <h4>Top Rated</h4>
+          <p>4.4 stars from 131 reviews — Mahikeng's go-to dining destination</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu" id="menu">
+  <div class="section-header">
+    <p class="section-eyebrow">What We Serve</p>
+    <h2 class="section-title">Our <em>Menu</em></h2>
+  </div>
+  <div class="menu-grid">
+    <div class="menu-category">
+      <div class="cat-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      </div>
+      <h3 class="cat-title">Breakfast</h3>
+      <div class="menu-items">
+        <div class="menu-item">
+          <p class="item-name">Egg & Cheese Sandwich</p>
+          <p class="item-desc">Fresh eggs, melted cheese on toasted bread</p>
+        </div>
+        <div class="menu-item">
+          <p class="item-name">Bacon Breakfast Plate</p>
+          <p class="item-desc">Crispy bacon with eggs your way</p>
+        </div>
+        <div class="menu-item">
+          <p class="item-name">Full Breakfast</p>
+          <p class="item-desc">The works — start your morning right</p>
+        </div>
+      </div>
+    </div>
+    <div class="menu-category">
+      <div class="cat-icon">
+        <svg viewBox="0 0 24 24"><path d="M8.1 13.34l2.83-2.83L3.91 3.5C2.38 5.12 2.38 7.6 3.91 9.17l4.19 4.17zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.2-1.1-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41L13.41 13l1.47-1.47z"/></svg>
+      </div>
+      <h3 class="cat-title">Burgers & Mains</h3>
+      <div class="menu-items">
+        <div class="menu-item">
+          <p class="item-name">Classic Cheeseburger</p>
+          <p class="item-desc">Juicy beef, cheddar, fresh toppings</p>
+        </div>
+        <div class="menu-item">
+          <p class="item-name">Bacon Burger</p>
+          <p class="item-desc">Stack of crispy bacon and melted cheese</p>
+        </div>
+        <div class="menu-item">
+          <p class="item-name">Pork Dishes</p>
+          <p class="item-desc">Slow-cooked, full of flavour</p>
+        </div>
+      </div>
+    </div>
+    <div class="menu-category">
+      <div class="cat-icon">
+        <svg viewBox="0 0 24 24"><path d="M18.06 22.99h1.66c.84 0 1.53-.64 1.63-1.46L23 5.05h-5V1h-1.97v4.05h-4.97l.3 2.34c1.71.47 3.31 1.32 4.27 2.26 1.44 1.42 2.43 2.89 2.43 5.29v8.05zM1 21.99V21h15.03v.99c0 .55-.45 1-1.01 1H2.01c-.56 0-1.01-.45-1.01-1zm15.03-7c0-4.5-6.72-5-8.44-5-2.12 0-6.59.39-6.59 5h15.03zM7.1 16.5h1.79l-.6-2.38 1.6-.45L7.9 11.5l-1.4.45L7.1 16.5z"/></svg>
+      </div>
+      <h3 class="cat-title">Salads & Light Bites</h3>
+      <div class="menu-items">
+        <div class="menu-item">
+          <p class="item-name">Caesar Salad</p>
+          <p class="item-desc">Fan favourite — crisp, tangy, satisfying</p>
+        </div>
+        <div class="menu-item">
+          <p class="item-name">Mushroom Sides</p>
+          <p class="item-desc">Sautéed to perfection</p>
+        </div>
+        <div class="menu-item">
+          <p class="item-name">Tacos</p>
+          <p class="item-desc">Flavour-packed, fresh fillings</p>
+        </div>
+      </div>
+    </div>
+    <div class="menu-category">
+      <div class="cat-icon">
+        <svg viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4v-2z"/></svg>
+      </div>
+      <h3 class="cat-title">Coffee & Drinks</h3>
+      <div class="menu-items">
+        <div class="menu-item">
+          <p class="item-name">Espresso & Cappuccino</p>
+          <p class="item-desc">Expertly pulled, perfectly balanced</p>
+        </div>
+        <div class="menu-item">
+          <p class="item-name">Flat White & Lattes</p>
+          <p class="item-desc">Smooth, creamy and warming</p>
+        </div>
+        <div class="menu-item">
+          <p class="item-name">Cold Drinks</p>
+          <p class="item-desc">Refreshing options all day long</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p style="margin-top: 2rem; font-size: 0.85rem; color: var(--caramel); font-style: italic; text-align: center;">
+    Meals up to approximately R160 per person. Call us for the full menu and daily specials.
+  </p>
+</section>
+
+<!-- INFO -->
+<section class="info" id="info">
+  <div class="section-header">
+    <p class="section-eyebrow">Plan Your Visit</p>
+    <h2 class="section-title">Come Find <em>Us</em></h2>
+  </div>
+  <div class="info-grid">
+    <div class="info-block">
+      <h3>Opening Hours</h3>
+      <div class="hours-row">
+        <span class="day">Monday</span>
+        <span class="time">7:00 AM – 9:00 PM</span>
+      </div>
+      <div class="hours-row">
+        <span class="day">Tuesday</span>
+        <span class="time">7:00 AM – 9:00 PM</span>
+      </div>
+      <div class="hours-row">
+        <span class="day">Wednesday</span>
+        <span class="time">7:00 AM – 9:00 PM</span>
+      </div>
+      <div class="hours-row">
+        <span class="day">Thursday</span>
+        <span class="time">7:00 AM – 9:00 PM</span>
+      </div>
+      <div class="hours-row">
+        <span class="day">Friday</span>
+        <span class="time">7:00 AM – 9:00 PM</span>
+      </div>
+      <div class="hours-row">
+        <span class="day">Saturday</span>
+        <span class="time">7:00 AM – 9:00 PM</span>
+      </div>
+      <div class="hours-row">
+        <span class="day">Sunday</span>
+        <span class="time closed">Closed (Private events only)</span>
+      </div>
+    </div>
+    <div class="info-block">
+      <h3>Contact & Location</h3>
+      <div class="contact-item">
+        <span class="contact-label">Address</span>
+        <span class="contact-value">15 First Ave (cnr Nelson Mandela Dr)<br>Mahikeng, 2745<br>North West, South Africa</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Phone</span>
+        <span class="contact-value"><a href="tel:+27183810004" style="color: var(--tan); text-decoration: none;">+27 18 381 0004</a></span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Social</span>
+        <span class="contact-value" style="color: var(--caramel);">Facebook · Instagram · TikTok<br><span style="font-size: 0.8rem;">Search "Corner Lifestyle Café Mahikeng"</span></span>
+      </div>
+    </div>
+    <div class="info-block">
+      <h3>What We Offer</h3>
+      <ul class="amenity-list">
+        <li>Dine-in &amp; Takeaway</li>
+        <li>Table Bookings Accepted</li>
+        <li>Credit Cards Accepted</li>
+        <li>Wheelchair Accessible</li>
+        <li>Private Function Hosting</li>
+        <li>Event &amp; Party Catering</li>
+        <li>Live Music &amp; R&amp;B Nights</li>
+        <li>Community Events</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section class="events" id="events">
+  <div class="section-header">
+    <p class="section-eyebrow">Events & More</p>
+    <h2 class="section-title">We Go <em>Big</em></h2>
+  </div>
+  <div class="events-grid">
+    <div class="event-card">
+      <span class="event-tag">Celebrations</span>
+      <h3 class="event-title">Birthday Parties & Private Functions</h3>
+      <p class="event-desc">Planning something special? We handle everything — from setup to catering. Whether it's an intimate gathering or a big celebration, The Corner has you covered.</p>
+    </div>
+    <div class="event-card">
+      <span class="event-tag">Live Music</span>
+      <h3 class="event-title">R&B Nights & Radio Broadcasts</h3>
+      <p class="event-desc">Feel the vibe. We regularly host live music sessions, R&B evenings, and even radio broadcasts right here at the café. Follow us on social media for the latest dates.</p>
+    </div>
+    <div class="event-card">
+      <span class="event-tag">Community</span>
+      <h3 class="event-title">Soup Drives & Community Outreach</h3>
+      <p class="event-desc">We believe in giving back. The Corner actively participates in soup drives and community initiatives, because great hospitality goes beyond the table.</p>
+    </div>
+    <div class="event-card">
+      <span class="event-tag">Catering</span>
+      <h3 class="event-title">Event Catering for Any Occasion</h3>
+      <p class="event-desc">Need to feed a crowd? Our team handles big orders with the same quality and care as every table we serve. Call us to discuss your event catering needs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2>Ready to Experience <em>The Corner</em>?</h2>
+  <p>Walk in, call ahead, or plan your next event with us.</p>
+  <div class="cta-btns">
+    <a href="tel:+27183810004" class="btn-brown">Call to Book</a>
+    <a href="#about" class="btn-outline">Learn More</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <img src="corner-logo.png" alt="The Corner Lifestyle Café">
+  </div>
+  <p>© 2025 The Corner Lifestyle Café · Mahikeng, North West · +27 18 381 0004</p>
+  <div class="footer-socials">
+    <a href="#" class="social-link">Fb</a>
+    <a href="#" class="social-link">Ig</a>
+    <a href="#" class="social-link">Tt</a>
+  </div>
+</footer>
+
+</body>
+</html>
